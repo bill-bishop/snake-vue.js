@@ -38,7 +38,7 @@ module.exports = {
     filename: 'snake.js'
   },
   devServer: {
-    port: 9999
+    port: process.env.PORT || 9999
   },
   module: {
     loaders: [
