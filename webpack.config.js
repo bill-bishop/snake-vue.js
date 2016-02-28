@@ -33,12 +33,12 @@ module.exports = {
     app: ['./src/app.js']
   },
   output: {
-    path: __dirname + '/build',
-    publicPath: '/build/',
+    path: __dirname + '/assets',
+    publicPath: '/assets',
     filename: 'snake.js'
   },
   devServer: {
-    port: process.env.PORT || 9999
+    port: 9999
   },
   module: {
     loaders: [
