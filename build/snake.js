@@ -10143,7 +10143,7 @@
 	    snakeCells = undefined,
 	    length = undefined,
 	    ticking = undefined,
-	    userActions = undefined;
+	    userActions = [];
 
 	exports.default = {
 	  props: [],
@@ -10155,12 +10155,7 @@
 
 	    this.start();
 	    window.addEventListener('keyup', function (event) {
-	      var direction = keyMap[event.which];
-	      if (direction) {
-	        userActions.push(function () {
-	          return _this.direction = direction;
-	        });
-	      }
+	      return _this.handleUserAction(event.which);
 	    });
 	  },
 	  data: function data() {
@@ -10175,6 +10170,19 @@
 	  computed: {},
 
 	  methods: {
+	    handleUserAction: function handleUserAction(key) {
+	      var _this2 = this;
+
+	      var direction = keyMap[key];
+	      if (direction) {
+	        userActions.push(function () {
+	          if (direction[0] + _this2.direction[0] === 0 && direction[1] + _this2.direction[1] === 0) {
+	            return;
+	          }
+	          _this2.direction = direction;
+	        });
+	      }
+	    },
 	    start: function start() {
 	      var size = 50,
 	          ms = 65;
