@@ -55,7 +55,7 @@
     "40": DOWN
   };
 
-  let snakePos, snakeCells, length, ticking, userActions;
+  let snakePos, snakeCells, length, ticking, userActions = [];
 
   export default{
     props: [],
@@ -64,12 +64,7 @@
 
     created() {
       this.start();
-      window.addEventListener('keyup', event => {
-        let direction = keyMap[event.which];
-        if (direction) {
-          userActions.push(() => this.direction = direction);
-        }
-      });
+      window.addEventListener('keyup', event => this.handleUserAction(event.which));
     },
 
     data() {
@@ -83,6 +78,16 @@
     computed: {},
 
     methods: {
+      handleUserAction(key) {
+        let direction = keyMap[key];
+        if (direction) {
+          if (direction[0] + this.direction[0] === 0 && direction[1] + this.direction[1] === 0) {
+            return; // ignore opposite direction presses
+          }
+          userActions.push(() => this.direction = direction);
+        }
+      },
+
       start() {
         let size = 50, ms = 65;
         this.grid = new Grid(size, (x, y) => ({x, y, snake: 0, food: false}));
