@@ -33,8 +33,8 @@ module.exports = {
     app: ['./src/app.js']
   },
   output: {
-    path: __dirname + '/assets',
-    publicPath: '/assets',
+    path: __dirname + '/build',
+    publicPath: '/build',
     filename: 'snake.js'
   },
   devServer: {
