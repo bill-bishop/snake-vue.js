@@ -64,7 +64,7 @@
 
     created() {
       this.start();
-      window.addEventListener('keyup', event => this.handleUserAction(event.which));
+      window.addEventListener('keydown', event => this.handleUserAction(event.which));
     },
 
     data() {
