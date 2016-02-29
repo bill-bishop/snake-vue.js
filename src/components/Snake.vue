@@ -81,10 +81,12 @@
       handleUserAction(key) {
         let direction = keyMap[key];
         if (direction) {
-          if (direction[0] + this.direction[0] === 0 && direction[1] + this.direction[1] === 0) {
-            return; // ignore opposite direction presses
-          }
-          userActions.push(() => this.direction = direction);
+          userActions.push(() => {
+            if (direction[0] + this.direction[0] === 0 && direction[1] + this.direction[1] === 0) {
+              return; // ignore opposite direction presses
+            }
+            this.direction = direction
+          });
         }
       },
 
